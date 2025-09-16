@@ -15,8 +15,8 @@ def main():
 
     print("\n--- Mesa de DJ ---\n")
     print("Comandos disponíveis:")
+    print("  - play <instrumento>")
     print("  - pausar <instrumento>")
-    print("  - retomar <instrumento>")
     print("  - bpm <instrumento> <novo_bpm>")
     print("  - status")
     print("  - sair")
@@ -27,7 +27,7 @@ def main():
             continue
 
         acao = comando[0]
-        
+
         if acao == "sair":
             for instrumento in instrumentos.values():
                 instrumento.parar()
@@ -40,10 +40,10 @@ def main():
             else:
                 print(f"Instrumento '{nome_inst}' não encontrado.")
         
-        elif acao == "retomar" and len(comando) > 1:
+        elif acao == "play" and len(comando) > 1:
             nome_inst = comando[1]
             if nome_inst in instrumentos:
-                instrumentos[nome_inst].retomar()
+                instrumentos[nome_inst].play()
             else:
                 print(f"Instrumento '{nome_inst}' não encontrado.")
         

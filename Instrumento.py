@@ -1,8 +1,9 @@
 import threading
 import time
+import pygame
 
 class Instrumento(threading.Thread):
-    def __init__(self, nome, bpm=120):
+    def __init__(self, nome, arquivo_audio, bpm=120):
         super().__init__()
         self.nome = nome
         self.tocando = True
@@ -11,25 +12,28 @@ class Instrumento(threading.Thread):
         self.intervalo = 60 / self.bpm
 
         self.pausado = threading.Event()
-        self.pausado.set()
+        self.pausado.clear() #a thread começa no estado pausado
         self.parar_execucao = threading.Event()
+
+        self.som = pygame.mixer.Sound(arquivo_audio)
 
     def run(self):
         print(f"{self.nome} iniciando com bpm {self.bpm}...")
         
         while not self.parar_execucao.is_set():
             self.pausado.wait() #se a thread tiver pausada, ele espera
-            print(f"[{self.nome}] Tocando...")
+            self.som.play()
             time.sleep(self.intervalo)
+
         print(f"[{self.nome}] Parando execução.")
 
     def pausar(self):
         self.pausado.clear()
         print(f"[{self.nome}] pausado.")
 
-    def retomar(self):
+    def play(self):
         self.pausado.set()
-        print(f"[{self.nome}] retornando.")
+        print(f"[{self.nome}] play.")
 
     def parar(self):
         self.parar_execucao.set()
