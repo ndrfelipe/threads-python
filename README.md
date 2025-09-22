@@ -119,3 +119,5 @@ Esse modelo só é possível porque cada faixa roda em **threads independentes**
 - Manuele Macêdo P. da Silva - manuelemacedo (git)
 - Dayvid Cristiano V. da Silva - dayvidcristiano (git)
 - Jeniffer Cristine Lopes da Conceição - jenixcri (git)
+- Enzo Antuña Ferreira - Enzo-antuna (git)
+- Alan Vitor Ferreira Sobral - alancodex (git)
